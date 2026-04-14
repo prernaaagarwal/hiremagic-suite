@@ -1,4 +1,5 @@
 import { useRef, useEffect } from 'react';
+import { ParsedFile } from '@/lib/fileParser';
 import { ChatMessage as ChatMessageType } from '@/lib/api';
 import { ChatMessage } from './ChatMessage';
 import { ChatInput } from './ChatInput';
@@ -11,7 +12,7 @@ interface ChatAreaProps {
   messages: ChatMessageType[];
   isLoading: boolean;
   error: string | null;
-  onSend: (message: string) => void;
+  onSend: (message: string, file?: ParsedFile) => void;
   onClear: () => void;
 }
 
