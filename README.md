@@ -5,7 +5,7 @@
 > Most hiring tools track candidates.  
 > HireMagic helps teams understand who to hire — and why.
 
-[![Live Demo](https://img.shields.io/badge/Live-Demo-blue)](https://hiremagic-suite.lovable.app/)
+[![Live Demo](https://img.shields.io/badge/Live-Demo-blue)](https://hiremagic.lovable.app/)
 [![Status](https://img.shields.io/badge/Status-MVP-orange)]()
 [![Built With](https://img.shields.io/badge/Built%20With-React%20%7C%20Supabase%20%7C%20LLMs-black)]()
 
@@ -29,7 +29,7 @@
 
 ## Overview
 
-HireMagic Suite is an **AI-native hiring intelligence layer** that sits on top of recruiting pipelines and turns raw candidate data into **structured hiring decisions**.
+HireMagic is an **AI-native hiring intelligence layer** that sits on top of recruiting pipelines and turns raw candidate data into **structured hiring decisions**.
 
 Instead of forcing recruiters to manually interpret resumes, stages, and interviews, HireMagic continuously answers:
 
@@ -101,15 +101,19 @@ Analyzes hiring flow:
 ---
 
 ## How It Works
+Enter New job vacancy
+↓
+Job description created as per company
+↓
+Sets Evaluation criteria (LLM + rules)
+↓
 Candidate Data
 ↓
-Signal Extraction (LLM + rules)
+Signal evaluation (LLM + rules)
 ↓
-Scoring Engine
+Scoring Engine and Ranking
 ↓
-Ranking System
-↓
-Pipeline Intelligence Layer
+Conducts Interview
 ↓
 Decision Dashboard
 
@@ -208,7 +212,7 @@ Not automation.
 
 ## Live Demo
 
-👉 https://hiremagic-suite.lovable.app/
+👉 https://hiremagic.lovable.app/
 
 ---
 
