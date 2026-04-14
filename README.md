@@ -1,73 +1,227 @@
-# Welcome to your Lovable project
+HireMagic Suite — From Hiring Tracking → Hiring Intelligence Systems
 
-## Project info
+Rethinking recruiting tools from passive candidate tracking → active decision intelligence
 
-**URL**: https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID
+Most hiring systems today are just databases with filters.
 
-## How can I edit this code?
+They store candidates, stage them, and leave decision-making entirely to humans.
 
-There are several ways of editing your application.
+HireMagic Suite is an attempt to rethink hiring as a real-time intelligence system — not a tracking system.
 
-**Use Lovable**
+🧠 Problem
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID) and start prompting.
+Modern hiring stacks (ATS, spreadsheets, job boards) fail in 3 fundamental ways:
 
-Changes made via Lovable will be committed automatically to this repo.
+1. They track candidates, but don’t interpret them
 
-**Use your preferred IDE**
+Recruiters see lists, not signals.
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+There is no system answering:
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+Who is actually the best fit right now?
+Where is the pipeline getting weak?
+Are we attracting the right talent at all?
 
-Follow these steps:
+Everything is manual inference.
 
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
+2. Hiring decisions are inconsistent by design
 
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
+Even within the same team:
 
-# Step 3: Install the necessary dependencies.
-npm i
+different interviewers evaluate differently
+scoring is subjective
+signals are not normalized
 
-# Step 4: Start the development server with auto-reloading and an instant preview.
-npm run dev
-```
+Result: hiring becomes opinion-driven, not system-driven.
 
-**Edit a file directly in GitHub**
+3. Pipeline data is never used as intelligence
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+ATS tools show stages:
 
-**Use GitHub Codespaces**
+New → Screening → Interview → Offer
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+But they don’t answer:
 
-## What technologies are used for this project?
+why candidates drop off
+where quality is degrading
+what patterns are emerging
 
-This project is built with:
+The system has data — but no understanding.
 
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
+💡 Solution (Working MVP)
 
-## How can I deploy this project?
+[Insert dashboard screenshot]
 
-Simply open [Lovable](https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID) and click on Share -> Publish.
+HireMagic Suite introduces a shift:
 
-## Can I connect a custom domain to my Lovable project?
+From “managing candidates” → to “understanding hiring systems”
 
-Yes, you can!
+It adds an AI intelligence layer on top of the recruiting pipeline that continuously evaluates, ranks, and explains hiring signals.
 
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
+⚙️ How It Works
+1. Candidate Signal Extraction
 
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/features/custom-domain#custom-domain)
+Every candidate is transformed into structured signals:
+
+role fit
+skill alignment
+seniority estimation
+historical pattern matching (if available)
+2. AI Ranking Layer
+
+Instead of flat lists, candidates are:
+
+continuously scored
+comparatively ranked
+normalized across roles and stages
+
+This creates a living hierarchy of talent quality.
+
+3. Pipeline Intelligence Engine
+
+The system analyzes hiring flow, not just individuals:
+
+stage conversion rates
+bottleneck detection
+drop-off clustering
+funnel imbalance signals
+
+The pipeline becomes observable.
+
+4. Decision Layer (Recruiter Interface)
+
+Recruiters don’t “browse candidates.”
+
+They see:
+
+who to prioritize
+why they are ranked higher
+where the pipeline is breaking
+what to fix next
+
+The system moves from data display → decision support.
+
+🎯 Product Goal
+
+To turn hiring into a system that is:
+
+observable → you can understand what’s happening
+ranked → you always know what matters most
+explainable → every decision has a reason
+self-improving (future) → learns from hiring outcomes
+🧠 Core Insight
+
+Hiring does not fail because of lack of data.
+
+It fails because:
+
+there is no system that converts hiring data into decision clarity.
+
+HireMagic exists to reduce hiring entropy — the noise between signal and decision.
+
+🏗️ System Design (MVP)
+Candidates → Signal Extraction → AI Scoring Layer → Ranking Engine → Decision UI
+                               ↓
+                      Pipeline Intelligence Layer
+                               ↓
+                     Hiring Insights + Bottlenecks
+🔑 Key Product Decisions
+1. Ranking > Listing
+
+Traditional ATS tools show candidates equally.
+
+HireMagic forces relative ordering of talent quality.
+
+2. System view > Candidate view
+
+We don’t optimize for individual profiles.
+
+We optimize for:
+
+funnel health
+distribution quality
+decision efficiency
+3. AI as structure, not autocomplete
+
+AI is not used to “help write summaries.”
+
+It is used to:
+
+normalize evaluation
+enforce consistency
+generate decision signals
+⚖️ Tradeoffs
+Decision	Cost	Why it was acceptable
+Opinionated ranking system	Less recruiter control	Improves decision speed and consistency
+AI-driven scoring	Less determinism	Gains cross-candidate normalization
+Reduced configurability	Fewer edge-case workflows	Stronger default system behavior
+
+These tradeoffs are intentional.
+
+We optimize for clarity of decision over flexibility of input.
+
+📊 Current Status
+MVP built in ~3 weeks
+Early prototype stage
+Active internal testing
+Supabase + React + LLM-based scoring layer
+🧪 Observed Behavior (Early Signals)
+
+Early testing shows:
+
+recruiters spend less time “scrolling” and more time deciding
+strong candidates surface earlier without manual filtering
+pipeline inefficiencies become immediately visible
+hiring conversations shift from opinion → evidence
+
+These are early qualitative signals, not validated metrics.
+
+⚠️ Failure Modes
+
+This system is not neutral — it introduces new risks:
+
+over-trust in AI ranking signals
+loss of human nuance in edge cases
+data sparsity causing unstable scoring
+false confidence in early-stage predictions
+
+This is not ignored — it is part of the design constraint space.
+
+📚 What This Revealed
+Hiring is not a sourcing problem — it’s a signal processing problem
+Most ATS tools fail because they don’t compute meaning from data
+“Good hiring” is mostly reducing ambiguity in decision-making
+AI is most useful when it reduces decision variance across humans
+🚀 Future Direction
+feedback loop from hiring outcomes → ranking calibration
+multi-model evaluation layer for scoring robustness
+explainability system for every candidate ranking
+integration into real ATS systems (not replacement, augmentation)
+experimentation layer for hiring strategy A/B testing
+🧭 Why This Matters
+
+Hiring is still run like a manual judgment process with software attached.
+
+HireMagic flips that model:
+
+from human memory and intuition
+→ to structured hiring intelligence systems
+
+The goal is not automation.
+
+The goal is decision clarity at scale.
+
+🔗 Live System
+
+https://hiremagic-suite.lovable.app/
+
+👋 About
+
+This project explores a simple question:
+
+What happens if we treat hiring as a system design problem instead of a workflow problem?
+
+The answer is a shift from:
+
+tracking candidates
+→ to understanding hiring itself
