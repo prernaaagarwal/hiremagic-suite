@@ -101,3 +101,121 @@ Analyzes hiring flow:
 ---
 
 ## How It Works
+Candidate Data
+↓
+Signal Extraction (LLM + rules)
+↓
+Scoring Engine
+↓
+Ranking System
+↓
+Pipeline Intelligence Layer
+↓
+Decision Dashboard
+
+
+---
+
+## System Design
+
+- **Signal Extractor** → converts resumes into structured features  
+- **Scoring Engine** → normalizes candidate evaluation  
+- **Ranking System** → orders candidates by relative strength  
+- **Pipeline Analyzer** → detects hiring inefficiencies  
+- **Decision UI** → surfaces prioritized actions for recruiters  
+
+---
+
+## Key Product Decisions
+
+### 1. Ranking over filtering
+We don’t ask: “Does this match?”  
+We ask: “Who should be seen first?”
+
+---
+
+### 2. System view over candidate view
+We optimize:
+- pipeline health  
+- distribution of talent  
+- decision efficiency  
+
+Not individual resumes.
+
+---
+
+### 3. AI as structure, not generation
+AI is used to:
+- normalize evaluation  
+- reduce recruiter bias  
+- structure decision signals  
+
+Not for chat or summaries.
+
+---
+
+## Early Signals
+
+Even in early usage:
+
+- recruiters stop endlessly scrolling candidate lists  
+- strong candidates surface earlier  
+- pipeline issues become visible instantly  
+- hiring discussions shift from opinion → signal  
+
+---
+
+## Failure Modes
+
+This system is opinionated:
+
+- over-trust in AI ranking  
+- loss of nuance in edge cases  
+- instability in low-data roles  
+- false confidence in early signals  
+
+We mitigate this via:
+- explainability  
+- human override  
+- inspectable rankings  
+
+---
+
+## What’s Next
+
+- feedback loop from hiring outcomes → improved ranking  
+- recruiter-specific calibration models  
+- A/B testing hiring strategies  
+- ATS integrations (Greenhouse / Lever-style systems)  
+- explainable scoring per candidate  
+
+---
+
+## Why This Matters
+
+Hiring today still runs on:
+> spreadsheets + intuition + memory
+
+HireMagic replaces that with:
+
+> structured, ranked, explainable decision systems
+
+Not automation.
+
+**Clarity.**
+
+---
+
+## Live Demo
+
+👉 https://hiremagic-suite.lovable.app/
+
+---
+
+## About
+
+This project explores one question:
+
+> What if hiring systems were built to help decisions — not just track data?
+
+HireMagic is an attempt to answer that.
