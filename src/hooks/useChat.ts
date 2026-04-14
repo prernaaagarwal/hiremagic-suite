@@ -1,5 +1,6 @@
 import { useState, useCallback, useEffect } from 'react';
 import { sendMessage, generateSessionId, ChatMessage } from '@/lib/api';
+import { ParsedFile } from '@/lib/fileParser';
 
 const DEFAULT_USER_ID = 'user@example.com';
 
@@ -46,13 +47,25 @@ export function useChat() {
     localStorage.setItem('hr_agent_messages', JSON.stringify(msgs));
   }, []);
 
-  const send = useCallback(async (content: string) => {
-    if (!content.trim() || isLoading) return;
+  const send = useCallback(async (content: string, file?: ParsedFile) => {
+    if ((!content.trim() && !file) || isLoading) return;
+
+    // Build the message to send to the API
+    let apiMessage = content.trim();
+    if (file) {
+      const resumeBlock = `\n\n[Attached Resume: ${file.name}]\n\n${file.text}`;
+      apiMessage = apiMessage ? `${apiMessage}${resumeBlock}` : `Please evaluate this resume:\n${resumeBlock}`;
+    }
+
+    // Display message shows just user text + file name
+    const displayContent = file
+      ? `${content.trim()}${content.trim() ? '\n' : ''}📎 ${file.name}`
+      : content.trim();
 
     setError(null);
     const userMessage: ChatMessage = {
       role: 'user',
-      content: content.trim(),
+      content: displayContent,
       timestamp: new Date(),
     };
 
@@ -62,7 +75,7 @@ export function useChat() {
     setIsLoading(true);
 
     try {
-      const response = await sendMessage(userId, sessionId, content.trim());
+      const response = await sendMessage(userId, sessionId, apiMessage);
       
       const assistantMessage: ChatMessage = {
         role: 'assistant',
