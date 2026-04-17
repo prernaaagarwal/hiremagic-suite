@@ -4,7 +4,7 @@ import {
   CheckSquare,
   UserCheck,
   MessageSquare,
-  Sparkles,
+  ArrowUpRight,
 } from 'lucide-react';
 
 interface WelcomeScreenProps {
@@ -13,72 +13,86 @@ interface WelcomeScreenProps {
 
 const quickActions = [
   {
+    num: '01',
     icon: FileText,
-    title: 'Create Job Description',
-    description: 'Generate a comprehensive JD for any role',
+    title: 'Compose a job description',
+    description: 'Write a role with voice, structure, and inclusive precision.',
     prompt: 'I want to create a job description for a new position',
   },
   {
+    num: '02',
     icon: CheckSquare,
-    title: 'Set Evaluation Criteria',
-    description: 'Define structured hiring parameters',
+    title: 'Architect an evaluation rubric',
+    description: 'Translate requirements into weighted scoring criteria.',
     prompt: 'Help me create evaluation criteria for a job role',
   },
   {
+    num: '03',
     icon: UserCheck,
-    title: 'Evaluate Resume',
-    description: 'Screen and score candidate applications',
+    title: 'Read & score a resume',
+    description: 'Screen candidates against the rubric with reasoning.',
     prompt: 'I need to evaluate a candidate resume',
   },
   {
+    num: '04',
     icon: MessageSquare,
-    title: 'Conduct Interview',
-    description: 'Run structured product manager interviews',
+    title: 'Conduct a structured interview',
+    description: 'Run a rigorous, calibrated conversation.',
     prompt: 'Start an interview session for a product manager role',
   },
 ];
 
 export function WelcomeScreen({ onQuickAction }: WelcomeScreenProps) {
   return (
-    <div className="flex-1 flex flex-col items-center justify-center px-8 py-12">
-      <div className="text-center max-w-2xl mx-auto animate-fade-in">
-        {/* Hero */}
-        <div className="inline-flex items-center justify-center w-16 h-16 rounded-2xl gradient-hero mb-6">
-          <Sparkles className="w-8 h-8 text-white" />
+    <div className="flex-1 flex flex-col items-center justify-center px-6 py-16">
+      <div className="w-full max-w-3xl animate-slide-up">
+        {/* Masthead */}
+        <div className="text-center mb-14">
+          <span className="font-mono text-[11px] tracking-[0.3em] uppercase text-muted-foreground">
+            The Studio · Opening page
+          </span>
+          <div className="editorial-rule my-5" />
+          <h1 className="font-display text-6xl md:text-7xl leading-[0.95] tracking-tight text-balance">
+            What shall we
+            <br />
+            <span className="italic text-accent">hire for today?</span>
+          </h1>
+          <p className="mt-6 text-muted-foreground max-w-xl mx-auto leading-relaxed">
+            Direct the studio. Five specialists — a writer, architect, reader, interviewer, and critic — are standing by.
+          </p>
         </div>
-        
-        <h1 className="text-3xl font-bold text-foreground mb-3">
-          AI Hiring Manager
-        </h1>
-        <p className="text-lg text-muted-foreground mb-10 max-w-md mx-auto">
-          Streamline your hiring workflow with intelligent orchestration of specialized agents.
-        </p>
 
-        {/* Quick Actions */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 max-w-xl mx-auto">
+        {/* Quick actions as editorial entries */}
+        <div className="border-t border-border">
           {quickActions.map((action) => (
-            <Button
+            <button
               key={action.title}
-              variant="outline"
               onClick={() => onQuickAction(action.prompt)}
-              className="h-auto p-4 flex flex-col items-start gap-2 hover:bg-secondary/80 hover:border-primary/30 transition-all"
+              className="group w-full text-left grid grid-cols-12 gap-4 py-5 border-b border-border hover:bg-card/60 transition-colors px-2 -mx-2 rounded-sm"
             >
-              <action.icon className="w-5 h-5 text-primary" />
-              <div className="text-left">
-                <span className="font-medium text-foreground block">
-                  {action.title}
-                </span>
-                <span className="text-xs text-muted-foreground">
-                  {action.description}
-                </span>
+              <div className="col-span-1 font-mono text-[11px] tracking-[0.25em] text-muted-foreground pt-1.5">
+                {action.num}
               </div>
-            </Button>
+              <div className="col-span-1 flex justify-center pt-1">
+                <action.icon className="w-4 h-4 text-muted-foreground group-hover:text-accent transition-colors" strokeWidth={1.5} />
+              </div>
+              <div className="col-span-9">
+                <h3 className="font-display text-2xl leading-tight group-hover:italic group-hover:text-accent transition-all">
+                  {action.title}
+                </h3>
+                <p className="text-sm text-muted-foreground mt-1 leading-relaxed">
+                  {action.description}
+                </p>
+              </div>
+              <div className="col-span-1 flex justify-end pt-2">
+                <ArrowUpRight className="w-4 h-4 text-muted-foreground group-hover:text-accent group-hover:-translate-y-0.5 group-hover:translate-x-0.5 transition-all" />
+              </div>
+            </button>
           ))}
         </div>
 
-        {/* Hint */}
-        <p className="text-sm text-muted-foreground mt-10">
-          Or type your hiring request below to get started
+        <p className="text-center font-mono text-[10px] tracking-[0.25em] uppercase text-muted-foreground/60 mt-10">
+          — or describe your hiring need below —
         </p>
       </div>
     </div>
