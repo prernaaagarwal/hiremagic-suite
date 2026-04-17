@@ -44,7 +44,7 @@ const quickActions = [
 
 export function WelcomeScreen({ onQuickAction }: WelcomeScreenProps) {
   return (
-    <div className="flex-1 flex flex-col items-center justify-center px-6 py-16">
+    <div className="flex-1 flex flex-col items-center justify-center px-6 pt-16 pb-8">
       <div className="w-full max-w-3xl animate-slide-up">
         {/* Masthead */}
         <div className="text-center mb-14">
