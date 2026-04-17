@@ -103,21 +103,21 @@ export function ChatInput({ onSend, isLoading, placeholder }: ChatInputProps) {
     >
       {/* Drag overlay */}
       {isDragging && (
-        <div className="absolute inset-0 z-10 flex items-center justify-center rounded-2xl border-2 border-dashed border-primary bg-primary/5 backdrop-blur-sm">
-          <div className="flex flex-col items-center gap-2 text-primary">
-            <Upload className="w-8 h-8" />
-            <p className="text-sm font-medium">Drop resume here (PDF/DOCX)</p>
+        <div className="absolute inset-0 z-10 flex items-center justify-center rounded-lg border-2 border-dashed border-accent bg-accent/5 backdrop-blur-sm">
+          <div className="flex flex-col items-center gap-2 text-accent">
+            <Upload className="w-7 h-7" strokeWidth={1.5} />
+            <p className="font-mono text-[11px] tracking-[0.2em] uppercase">Drop resume · PDF or DOCX</p>
           </div>
         </div>
       )}
 
       {/* Attached file preview */}
       {attachedFile && (
-        <div className="mb-2 flex items-center gap-2 p-3 bg-secondary/50 rounded-xl border border-border animate-fade-in">
-          <FileText className="w-5 h-5 text-primary flex-shrink-0" />
+        <div className="mb-2 flex items-center gap-3 px-4 py-3 bg-card rounded-lg border border-border animate-fade-in">
+          <FileText className="w-4 h-4 text-accent flex-shrink-0" strokeWidth={1.5} />
           <div className="flex-1 min-w-0">
-            <p className="text-sm font-medium text-foreground truncate">{attachedFile.name}</p>
-            <p className="text-xs text-muted-foreground">
+            <p className="font-display text-base text-foreground truncate leading-tight">{attachedFile.name}</p>
+            <p className="font-mono text-[10px] tracking-[0.15em] uppercase text-muted-foreground mt-0.5">
               {formatSize(attachedFile.size)} · {attachedFile.text.split(/\s+/).length} words extracted
             </p>
           </div>
@@ -134,13 +134,13 @@ export function ChatInput({ onSend, isLoading, placeholder }: ChatInputProps) {
 
       {/* Parsing indicator */}
       {isParsing && (
-        <div className="mb-2 flex items-center gap-2 p-3 bg-secondary/50 rounded-xl border border-border animate-fade-in">
-          <Loader2 className="w-5 h-5 text-primary animate-spin flex-shrink-0" />
-          <p className="text-sm text-muted-foreground">Extracting text from file...</p>
+        <div className="mb-2 flex items-center gap-3 px-4 py-3 bg-card rounded-lg border border-border animate-fade-in">
+          <Loader2 className="w-4 h-4 text-accent animate-spin flex-shrink-0" />
+          <p className="font-mono text-[11px] tracking-[0.2em] uppercase text-muted-foreground">Extracting text…</p>
         </div>
       )}
 
-      <div className="flex items-end gap-2 p-4 bg-card rounded-2xl border border-border shadow-soft">
+      <div className="flex items-end gap-2 p-3 bg-card rounded-lg border border-border shadow-soft focus-within:border-accent/40 focus-within:shadow-glow transition-all">
         <input
           ref={fileInputRef}
           type="file"
@@ -151,12 +151,12 @@ export function ChatInput({ onSend, isLoading, placeholder }: ChatInputProps) {
         <Button
           variant="ghost"
           size="icon"
-          className="flex-shrink-0 text-muted-foreground hover:text-foreground"
+          className="flex-shrink-0 text-muted-foreground hover:text-accent"
           disabled={isLoading || isParsing}
           onClick={() => fileInputRef.current?.click()}
           title="Attach resume (PDF/DOCX)"
         >
-          <Paperclip className="w-5 h-5" />
+          <Paperclip className="w-4 h-4" strokeWidth={1.5} />
         </Button>
 
         <Textarea
@@ -165,12 +165,12 @@ export function ChatInput({ onSend, isLoading, placeholder }: ChatInputProps) {
           onChange={(e) => setInput(e.target.value)}
           onKeyDown={handleKeyDown}
           onInput={handleInput}
-          placeholder={attachedFile ? 'Add instructions for evaluation...' : (placeholder || "Describe your hiring needs...")}
+          placeholder={attachedFile ? 'Add instructions for evaluation…' : (placeholder || 'Describe your hiring needs…')}
           disabled={isLoading}
           className={cn(
             'flex-1 min-h-[44px] max-h-[200px] resize-none border-0 bg-transparent',
             'focus-visible:ring-0 focus-visible:ring-offset-0',
-            'placeholder:text-muted-foreground/60 text-sm'
+            'placeholder:text-muted-foreground/60 text-[15px] leading-relaxed'
           )}
           rows={1}
         />
@@ -179,12 +179,12 @@ export function ChatInput({ onSend, isLoading, placeholder }: ChatInputProps) {
           onClick={handleSubmit}
           disabled={(!input.trim() && !attachedFile) || isLoading || isParsing}
           size="icon"
-          className="flex-shrink-0 rounded-xl"
+          className="flex-shrink-0 rounded-md bg-accent text-accent-foreground hover:bg-accent/90"
         >
           {isLoading ? (
-            <Loader2 className="w-5 h-5 animate-spin" />
+            <Loader2 className="w-4 h-4 animate-spin" />
           ) : (
-            <Send className="w-5 h-5" />
+            <Send className="w-4 h-4" strokeWidth={1.5} />
           )}
         </Button>
       </div>
