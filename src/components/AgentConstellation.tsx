@@ -53,12 +53,13 @@ export function AgentConstellation({
   }, []);
 
   return (
-    <div className="relative w-full">
-      <svg
-        viewBox={`0 0 ${W} ${H}`}
-        className="w-full h-auto block"
-        aria-label="Agent constellation"
-      >
+    <TooltipProvider delayDuration={150}>
+      <div className="relative w-full">
+        <svg
+          viewBox={`0 0 ${W} ${H}`}
+          className="w-full h-auto block"
+          aria-label="Agent constellation"
+        >
         {/* Connecting lines: conductor → each agent */}
         {nodes.map((n) => {
           const isActive = activeAgentId === n.id;
@@ -145,8 +146,7 @@ export function AgentConstellation({
           return (
             <g
               key={n.id}
-              className="cursor-pointer"
-              onClick={() => onSelectAgent?.(n.id)}
+              className="pointer-events-none"
             >
               {/* Glow halo when lit */}
               {lit && (
