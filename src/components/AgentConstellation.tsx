@@ -5,6 +5,12 @@ import {
 } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { WORKFLOW_AGENTS } from '@/lib/api';
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from '@/components/ui/tooltip';
 
 const iconMap: Record<string, LucideIcon> = {
   FileText, CheckSquare, UserCheck, MessageSquare, Award,
