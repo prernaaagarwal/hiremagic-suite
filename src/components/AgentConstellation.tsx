@@ -237,6 +237,38 @@ export function AgentConstellation({
         })}
       </svg>
 
+        {/* Tooltip + click overlay layer — absolute, percentage-positioned over SVG */}
+        <div className="absolute inset-0 pointer-events-none">
+          {nodes.map((n) => (
+            <Tooltip key={`tip-${n.id}`}>
+              <TooltipTrigger asChild>
+                <button
+                  type="button"
+                  onClick={() => onSelectAgent?.(n.id)}
+                  aria-label={`${n.name} — ${n.description}`}
+                  className="absolute pointer-events-auto rounded-full focus:outline-none focus:ring-2 focus:ring-accent focus:ring-offset-2 focus:ring-offset-sidebar"
+                  style={{
+                    left: `${(n.x / W) * 100}%`,
+                    top: `${(n.y / H) * 100}%`,
+                    width: '14%',
+                    aspectRatio: '1',
+                    transform: 'translate(-50%, -50%)',
+                  }}
+                />
+              </TooltipTrigger>
+              <TooltipContent side="right" className="max-w-[220px] bg-popover border-border">
+                <p className="font-display text-base leading-tight">{n.name}</p>
+                <p className="text-xs text-muted-foreground mt-1 leading-snug">
+                  {n.description}
+                </p>
+                <p className="font-mono text-[9px] tracking-[0.2em] uppercase text-accent mt-2">
+                  Click to invoke →
+                </p>
+              </TooltipContent>
+            </Tooltip>
+          ))}
+        </div>
+
         {/* Status caption */}
         <div className="mt-2 flex items-center justify-between px-2">
           <span className="font-mono text-[9px] tracking-[0.25em] uppercase text-sidebar-foreground/40">
