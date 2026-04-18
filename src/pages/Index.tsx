@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useMemo, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Sidebar } from '@/components/Sidebar';
 import { ChatArea } from '@/components/ChatArea';
@@ -6,10 +6,17 @@ import { useChat } from '@/hooks/useChat';
 import { Button } from '@/components/ui/button';
 import { Menu, X } from 'lucide-react';
 import { cn } from '@/lib/utils';
+import { detectActiveAgent, predictThinkingAgent } from '@/lib/agentDetection';
 
 const Index = () => {
   const { messages, isLoading, error, send, clearChat } = useChat();
   const [sidebarOpen, setSidebarOpen] = useState(false);
+
+  const activeAgentId = useMemo(() => detectActiveAgent(messages), [messages]);
+  const thinkingAgentId = useMemo(
+    () => (isLoading ? predictThinkingAgent(messages) : null),
+    [messages, isLoading],
+  );
 
   const handleSelectWorkflow = (id: string) => {
     const prompts: Record<string, string> = {
@@ -48,6 +55,9 @@ const Index = () => {
             setSidebarOpen(false);
           }}
           onSelectWorkflow={handleSelectWorkflow}
+          activeAgentId={activeAgentId}
+          thinkingAgentId={thinkingAgentId}
+          isThinking={isLoading}
         />
       </div>
 
