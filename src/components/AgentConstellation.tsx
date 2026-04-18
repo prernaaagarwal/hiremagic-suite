@@ -237,30 +237,31 @@ export function AgentConstellation({
         })}
       </svg>
 
-      {/* Status caption */}
-      <div className="mt-2 flex items-center justify-between px-2">
-        <span className="font-mono text-[9px] tracking-[0.25em] uppercase text-sidebar-foreground/40">
-          Conductor
-        </span>
-        <span className="font-mono text-[9px] tracking-[0.25em] uppercase text-sidebar-foreground/50 flex items-center gap-1.5">
-          <span
-            className={cn(
-              'w-1.5 h-1.5 rounded-full',
-              isThinking
-                ? 'bg-accent animate-pulse-soft'
-                : activeAgentId
-                ? 'bg-accent'
-                : 'bg-sidebar-foreground/30',
-            )}
-          />
-          {isThinking
-            ? 'Composing…'
-            : activeAgentId
-            ? `${getShort(activeAgentId)} active`
-            : 'Standby'}
-        </span>
+        {/* Status caption */}
+        <div className="mt-2 flex items-center justify-between px-2">
+          <span className="font-mono text-[9px] tracking-[0.25em] uppercase text-sidebar-foreground/40">
+            Conductor
+          </span>
+          <span className="font-mono text-[9px] tracking-[0.25em] uppercase text-sidebar-foreground/50 flex items-center gap-1.5">
+            <span
+              className={cn(
+                'w-1.5 h-1.5 rounded-full',
+                isThinking
+                  ? 'bg-accent animate-pulse-soft'
+                  : activeAgentId
+                  ? 'bg-accent'
+                  : 'bg-sidebar-foreground/30',
+              )}
+            />
+            {isThinking
+              ? 'Composing…'
+              : activeAgentId
+              ? `${getShort(activeAgentId)} active`
+              : 'Standby'}
+          </span>
+        </div>
       </div>
-    </div>
+    </TooltipProvider>
   );
 }
 
