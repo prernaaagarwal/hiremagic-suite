@@ -203,11 +203,7 @@ export function AgentConstellation({
           // Anchor based on side
           const anchor =
             Math.abs(dx) < 10 ? 'middle' : dx > 0 ? 'start' : 'end';
-          // Short label
-          const short = n.name
-            .replace(' Agent', '')
-            .replace(' Generator', '')
-            .replace('Evaluation', 'Eval');
+          const short = SHORT_LABELS[n.id] ?? n.name;
           return (
             <text
               key={`label-${n.id}`}
@@ -261,11 +257,14 @@ export function AgentConstellation({
   );
 }
 
+const SHORT_LABELS: Record<string, string> = {
+  'job-description': 'Job Desc',
+  'evaluation-criteria': 'Criteria',
+  'resume-evaluation': 'Resume',
+  'interviewer': 'Interview',
+  'interview-evaluator': 'Verdict',
+};
+
 function getShort(id: string) {
-  const a = WORKFLOW_AGENTS.find((x) => x.id === id);
-  if (!a) return '';
-  return a.name
-    .replace(' Agent', '')
-    .replace(' Generator', '')
-    .replace('Evaluation', 'Eval');
+  return SHORT_LABELS[id] ?? '';
 }
