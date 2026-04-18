@@ -20,9 +20,10 @@ interface AgentConstellationProps {
   onSelectAgent?: (id: string) => void;
 }
 
-// Polar layout: conductor at center, agents around a circle
-const W = 280;
-const H = 280;
+// Polar layout: conductor at center, agents around a circle.
+// viewBox is wider than the orbit ring so labels don't clip on the sides.
+const W = 360;
+const H = 300;
 const CX = W / 2;
 const CY = H / 2;
 const R = 100;
