@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 import { WORKFLOW_AGENTS } from '@/lib/api';
-import { WorkflowCard } from './WorkflowCard';
+import { AgentConstellation } from './AgentConstellation';
 import { Button } from '@/components/ui/button';
 import { Plus, Settings, HelpCircle } from 'lucide-react';
 import { cn } from '@/lib/utils';
@@ -8,10 +8,20 @@ import { cn } from '@/lib/utils';
 interface SidebarProps {
   onNewChat: () => void;
   onSelectWorkflow?: (id: string) => void;
+  activeAgentId?: string | null;
+  thinkingAgentId?: string | null;
+  isThinking?: boolean;
   className?: string;
 }
 
-export function Sidebar({ onNewChat, onSelectWorkflow, className }: SidebarProps) {
+export function Sidebar({
+  onNewChat,
+  onSelectWorkflow,
+  activeAgentId,
+  thinkingAgentId,
+  isThinking,
+  className,
+}: SidebarProps) {
   return (
     <aside
       className={cn(
@@ -60,28 +70,29 @@ export function Sidebar({ onNewChat, onSelectWorkflow, className }: SidebarProps
         </Button>
       </div>
 
-      {/* Agents */}
-      <div className="flex-1 overflow-y-auto px-3 py-5">
-        <div className="flex items-center justify-between px-2 mb-3">
+      {/* Constellation */}
+      <div className="flex-1 overflow-y-auto px-4 py-5">
+        <div className="flex items-center justify-between px-1 mb-3">
           <h2 className="font-mono text-[10px] tracking-[0.25em] uppercase text-sidebar-foreground/40">
-            § The cast
+            § The constellation
           </h2>
           <span className="font-mono text-[10px] text-sidebar-foreground/30">
-            {WORKFLOW_AGENTS.length}
+            {WORKFLOW_AGENTS.length} agents
           </span>
         </div>
-        <div className="space-y-1">
-          {WORKFLOW_AGENTS.map((agent, i) => (
-            <WorkflowCard
-              key={agent.id}
-              index={i}
-              name={agent.name}
-              description={agent.description}
-              icon={agent.icon}
-              onClick={() => onSelectWorkflow?.(agent.id)}
-            />
-          ))}
-        </div>
+
+        <AgentConstellation
+          activeAgentId={activeAgentId}
+          thinkingAgentId={thinkingAgentId}
+          isThinking={isThinking}
+          onSelectAgent={onSelectWorkflow}
+        />
+
+        <p className="mt-5 px-1 text-[11px] leading-relaxed text-sidebar-foreground/55">
+          A central conductor delegates each request to one of five
+          specialists. Watch nodes <span className="text-accent">light</span>{' '}
+          as the studio composes your reply.
+        </p>
       </div>
 
       {/* Footer */}
