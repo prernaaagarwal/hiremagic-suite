@@ -173,6 +173,20 @@ export function AgentConstellation({
                 strokeWidth={1}
                 className="transition-all duration-300"
               />
+              {/* Loading ring while sub-agent is generating */}
+              {isPending && (
+                <circle
+                  cx={n.x}
+                  cy={n.y}
+                  r={20}
+                  fill="none"
+                  stroke="hsl(var(--accent))"
+                  strokeWidth={1.75}
+                  strokeLinecap="round"
+                  strokeDasharray="22 100"
+                  className="animate-spin-svg"
+                />
+              )}
               <foreignObject
                 x={n.x - 9}
                 y={n.y - 9}
