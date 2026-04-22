@@ -292,8 +292,59 @@ export function AgentConstellation({
               : 'Standby'}
           </span>
         </div>
+
+        {/* Last invoked agent indicator */}
+        <LastInvokedChip
+          activeAgentId={activeAgentId}
+          isThinking={isThinking}
+        />
       </div>
     </TooltipProvider>
+  );
+}
+
+function LastInvokedChip({
+  activeAgentId,
+  isThinking,
+}: {
+  activeAgentId?: string | null;
+  isThinking?: boolean;
+}) {
+  const agent = activeAgentId
+    ? WORKFLOW_AGENTS.find((a) => a.id === activeAgentId)
+    : null;
+  const Icon = agent ? iconMap[agent.icon] ?? FileText : FileText;
+
+  return (
+    <div className="mt-3 mx-2 rounded-md border border-sidebar-border/70 bg-sidebar-accent/30 px-3 py-2 flex items-center gap-2.5">
+      <span className="font-mono text-[9px] tracking-[0.25em] uppercase text-sidebar-foreground/40 shrink-0">
+        Last invoked
+      </span>
+      <span className="flex-1 flex items-center justify-end gap-1.5 min-w-0">
+        {agent ? (
+          <>
+            <span
+              className={cn(
+                'w-4 h-4 rounded-full flex items-center justify-center shrink-0',
+                isThinking ? 'bg-accent/30' : 'bg-accent',
+              )}
+            >
+              <Icon
+                className="w-2.5 h-2.5 text-accent-foreground"
+                strokeWidth={2}
+              />
+            </span>
+            <span className="font-display text-xs leading-none truncate text-sidebar-foreground">
+              {agent.name}
+            </span>
+          </>
+        ) : (
+          <span className="font-mono text-[10px] tracking-[0.2em] uppercase text-sidebar-foreground/35">
+            None yet
+          </span>
+        )}
+      </span>
+    </div>
   );
 }
 
